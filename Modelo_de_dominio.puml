@@ -1,0 +1,19 @@
+@startuml
+entity SistemaBeatTheRhythm {
++ AgregarInstrumento
++ VenderInstrumento
++ ConsultarInventario
++ CerrarSistema
+}
+
+entity Instrumento {
+Código
+Precio
+Stock
+Nombre
+Material
+}
+
+SistemaBeatTheRhythm "1" --> "1..*" Instrumento: Tiene
+note right: Los instrumentos pueden ser tipo Cuerda, Viento o Percusión
+@enduml

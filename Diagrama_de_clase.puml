@@ -1,0 +1,75 @@
+@startuml
+interface Sistema <<Interface>>{
+
++agregarInstrumento():void
++venderInstrumento():void
++consultarInventario():void
++cierre():void
++iniciar():void
++escrituraDeArchivo():void
++lecturaDeArchivo(archivoEntrada:ArchivoEntrada):void
++DespliegueDeDatos(instrumento:Instrumento):void
+}
+
+
+class SistemaImpl implements Sistema{
+-inventario:Inventario
++SistemaImpl()
+}
+
+abstract class Instrumento{
+-nombreInstrumento:String
+-stock:int
+-precio:int
+-material:String
+-codigoUnico:String
++Instrumento(nombreInstrumento:String,stock:int,precio:int,material:String,codigoUnico:String)
++getNombreInstrumento():String
++getStock():int
++getPrecio():int
++getMaterial():String
++getCodigoUnico():String
++setStock(stock:int):void
+}
+
+class Inventario {
+-listaInstrumentos:Instrumento[]
+-cantActual:int
+-cantMaxima:int
++Inventario(cantMaxima:int)
++agregarInstrumento(instrumento:Instrumento):void
++obtenerInstrumento(codigoUnico:String):Instrumento
++obtenerInstrumento(posicion:int):Instrumento
++ventaDeInstrumento(instrumento:Instrumento):void
++instrumentosEnStock(codigoDeTipoInstrumento:int):int
++getCantActual(cantactual:int)
++getCantMaxima(cantmax:int)
+}
+
+class InstrumentoCuerdas extends Instrumento{
+-tipoCuerdas:String
+-numeroDeCuerdas:int
+-tipo:String
++InstrumentoCuerdas(tipoCuerdas:String,numeroDeCuerdas:int,tipo:String)
++getNumeroDeCuerdas():int
++getTipoCuerdas():String
++getTipo():String
+}
+
+
+class InstrumentoPercusion extends Instrumento {
+-tipoDePercusion:String
+-tipoDeAltura:String
++InstrumentoPercusion(tipoDePercusion:String,tipoAltura:String)
++getTipoDePercusion():String
++getTipoDeAltura():String
+}
+
+class InstrumentoViento extends Instrumento{
++InstrumentoViento()
+}
+
+
+SistemaImpl "1" --> "1" Inventario: Maneja
+Inventario o-- "*" Instrumento: Almacena
+@enduml
